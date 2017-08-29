@@ -1,0 +1,11 @@
+{
+  "name": "retypes",
+  "version": "1.0.0",
+  "description": "Index of curated and automatically generated JS bindings for ReasonML",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "Ryan Delaney <rrdelaney@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "reasonably-typed": "^0.11.0"
+  }
+}
