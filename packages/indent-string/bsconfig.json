@@ -1,0 +1,11 @@
+{
+  "name": "indent-string",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

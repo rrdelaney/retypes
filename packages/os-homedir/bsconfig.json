@@ -1,0 +1,11 @@
+{
+  "name": "os-homedir",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

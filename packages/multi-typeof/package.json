@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/multi-typeof",
+  "version": "1.0.0-0",
+  "description": "Packaged ReasonML bindings for multi-typeof",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

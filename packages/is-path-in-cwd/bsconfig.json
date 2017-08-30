@@ -1,0 +1,11 @@
+{
+  "name": "is-path-in-cwd",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/throttle-debounce",
+  "version": "1.0.0-0",
+  "description": "Packaged ReasonML bindings for throttle-debounce",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

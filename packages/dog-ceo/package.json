@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/dog-ceo",
+  "version": "1.0.0-0",
+  "description": "Packaged ReasonML bindings for dog-ceo",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

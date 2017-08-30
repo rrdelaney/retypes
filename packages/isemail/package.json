@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/isemail",
+  "version": "2.2.0-0",
+  "description": "Packaged ReasonML bindings for isemail",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

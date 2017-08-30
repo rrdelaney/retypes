@@ -1,0 +1,11 @@
+{
+  "name": "camelcase",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

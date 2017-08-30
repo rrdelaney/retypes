@@ -1,0 +1,11 @@
+{
+  "name": "mersenne-twister",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

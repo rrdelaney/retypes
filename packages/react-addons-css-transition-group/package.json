@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/react-addons-css-transition-group",
+  "version": "15.0.0-0",
+  "description": "Packaged ReasonML bindings for react-addons-css-transition-group",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

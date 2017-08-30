@@ -1,0 +1,11 @@
+{
+  "name": "lru-cache",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

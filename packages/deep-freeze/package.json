@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/deep-freeze",
+  "version": "0.0.1-0",
+  "description": "Packaged ReasonML bindings for deep-freeze",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}
