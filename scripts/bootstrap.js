@@ -1,4 +1,5 @@
 const { promisify } = require('util')
+const path = require('path')
 const fs = require('fs')
 const {
   getFlowTypedPackages,
@@ -31,6 +32,14 @@ async function run() {
           package.source
         )
       ])
+    })
+  )
+
+  const packageNames = p.map(({ name }) => name)
+  await writeFile(
+    path.join(__dirname, '..', 'docs', 'generated-packages.json'),
+    JSON.stringify({
+      packages: packageNames
     })
   )
 }
