@@ -1,6 +1,10 @@
 const { promisify } = require('util')
 const fs = require('fs')
-const { getFlowTypedPackages, createPackageJson } = require('./_packages')
+const {
+  getFlowTypedPackages,
+  createPackageJson,
+  createBsConfig
+} = require('./_packages')
 
 const mkdir = promisify(fs.mkdir)
 const writeFile = promisify(fs.writeFile)
@@ -15,11 +19,17 @@ async function run() {
   await Promise.all(
     p.map(async package => {
       await mkdir(`packages/${package.name}`)
+      await mkdir(`packages/${package.name}/src`)
       const packageJSON = createPackageJson(package)
+      const bsConfig = createBsConfig(package)
 
       await Promise.all([
         writeFile(`packages/${package.name}/package.json`, packageJSON),
-        writeFile(`packages/${package.name}/${package.name}.re`, package.source)
+        writeFile(`packages/${package.name}/bsconfig.json`, bsConfig),
+        writeFile(
+          `packages/${package.name}/src/${package.name}.re`,
+          package.source
+        )
       ])
     })
   )

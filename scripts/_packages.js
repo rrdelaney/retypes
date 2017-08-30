@@ -68,8 +68,25 @@ function createPackageJson(package, previousVersion) {
   )
 }
 
+function createBsConfig(package) {
+  return JSON.stringify(
+    {
+      name: package.name,
+      reason: { 'react-jsx': 2 },
+      sources: [{ dir: 'src' }]
+    },
+    null,
+    2
+  )
+}
+
 async function publish(dir) {
   await exec(`npm publish ${dir}`)
 }
 
-module.exports = { getFlowTypedPackages, createPackageJson, publish }
+module.exports = {
+  getFlowTypedPackages,
+  createPackageJson,
+  createBsConfig,
+  publish
+}
