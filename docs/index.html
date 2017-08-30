@@ -83,10 +83,10 @@
   <script>
 Promise
   .all([
-    fetch('/community-packages.json')
+    fetch('community-packages.json')
       .then(res => res.json())
       .then(res => res.packages),
-    fetch('/generated-packages.json')
+    fetch('generated-packages.json')
       .then(res => res.json())
       .then(res => res.packages)
   ])
