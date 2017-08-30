@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/base64url",
+  "version": "1.0.0-0",
+  "description": "Packaged ReasonML bindings for base64url",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

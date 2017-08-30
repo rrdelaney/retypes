@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/copy-to-clipboard",
+  "version": "3.0.0-0",
+  "description": "Packaged ReasonML bindings for copy-to-clipboard",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

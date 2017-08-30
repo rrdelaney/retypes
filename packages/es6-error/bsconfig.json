@@ -1,0 +1,11 @@
+{
+  "name": "es6-error",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

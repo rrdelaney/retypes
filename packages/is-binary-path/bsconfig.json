@@ -1,0 +1,11 @@
+{
+  "name": "is-binary-path",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "path-exists",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

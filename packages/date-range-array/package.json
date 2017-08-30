@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/date-range-array",
+  "version": "2.0.0-0",
+  "description": "Packaged ReasonML bindings for date-range-array",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

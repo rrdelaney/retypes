@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/supports-color",
+  "version": "3.0.0-0",
+  "description": "Packaged ReasonML bindings for supports-color",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

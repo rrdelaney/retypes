@@ -1,0 +1,15 @@
+{
+  "packages": {
+    "bs-react-native": "https://github.com/reasonml-community/bs-react-native",
+    "bs-webapi-incubator": "https://github.com/reasonml-community/bs-webapi-incubator",
+    "bs-transit-js": "https://github.com/reasonml-community/bs-transit-js",
+    "bs-socket.io": "https://github.com/reasonml-community/bs-socket.io",
+    "bs-react-test-renderer": "https://github.com/reasonml-community/bs-react-test-renderer",
+    "bs-react-router": "https://github.com/reasonml-community/bs-react-router",
+    "bs-node": "https://github.com/reasonml-community/bs-node",
+    "bs-moment": "https://github.com/reasonml-community/bs-moment",
+    "bs-leaflet": "https://github.com/reasonml-community/bs-leaflet",
+    "bs-jest": "https://github.com/reasonml-community/bs-jest",
+    "bs-immutablejs": "https://github.com/reasonml-community/bs-immutablejs"
+  }
+}

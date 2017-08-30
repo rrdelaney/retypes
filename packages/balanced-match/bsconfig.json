@@ -1,0 +1,11 @@
+{
+  "name": "balanced-match",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

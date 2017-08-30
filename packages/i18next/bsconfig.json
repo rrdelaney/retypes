@@ -1,0 +1,11 @@
+{
+  "name": "i18next",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

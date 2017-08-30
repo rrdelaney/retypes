@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/indent-string",
+  "version": "3.0.0-0",
+  "description": "Packaged ReasonML bindings for indent-string",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

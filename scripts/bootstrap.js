@@ -45,9 +45,13 @@ async function run() {
 
   await writeFile(
     path.join(__dirname, '..', 'docs', 'generated-packages.json'),
-    JSON.stringify({
-      packages: packageNames
-    })
+    JSON.stringify(
+      {
+        packages: packageNames
+      },
+      null,
+      2
+    )
   )
 }
 

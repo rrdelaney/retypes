@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/type-is",
+  "version": "1.0.0-0",
+  "description": "Packaged ReasonML bindings for type-is",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

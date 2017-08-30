@@ -57,37 +57,77 @@
     .header.hero {
       font-size: 48pt;
     }
-    #libdef-output {
-      opacity: 1;
-    }
-    #libdef-output.error {
-      color: indianred;
-      border-color: indianred;
-    }
-    #is-it-ready {
-      text-align: center;
-      font-size: 72pt;
-    }
-    #is-it-ready-table {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      padding: 1rem 10vw;
-    }
-    #is-it-ready-message {
-      text-align: center;
-    }
-    .test-box {
-      height: 1rem;
-      width: 1rem;
-      margin: 2px;
-    }
-    .failing.test-box {
-      background-color: indianred;
-    }
-    .passing.test-box {
-      background-color: darkseagreen;
+    .search-container {
+      margin: 0 auto;
+      max-width: 400px;
     }
     </style>
 </head>
+<body>
+  <div class="ui inverted borderless reason square fluid one item menu">
+    <h1 class="header hero item">
+      <span>
+        retypes index
+      </span>
+    </h1>
+  </div>
+  <div class="search-container">
+    <div class="ui fluid category search">
+      <div class="ui icon input" style="width:100%">
+        <input class="prompt" type="text" placeholder="Search bindings...">
+        <i class="search icon"></i>
+      </div>
+      <div class="results"></div>
+    </div>
+  </div>
+  <script>
+Promise
+  .all([
+    fetch('/community-packages.json')
+      .then(res => res.json())
+      .then(res => res.packages),
+    fetch('/generated-packages.json')
+      .then(res => res.json())
+      .then(res => res.packages)
+  ])
+  .then(([comm, gen]) => {
+    const commItems = Object.entries(comm).map(([name, url]) => ({
+      title: name,
+      url
+    }))
+
+    const genItems = Object.entries(gen).map(([name, url]) => ({
+      title: name,
+      url
+    }))
+
+    $('.ui.search').search({
+      type: 'category',
+      apiSettings: {
+        response({ urlData: { query } }) {
+          const r = {
+            success: true,
+            results: {
+              community: {
+                name: 'Community',
+                results: commItems
+                  .filter(({ title }) => title.includes(query))
+                  .slice(0, 7)
+              },
+              generated: {
+                name: 'Generated',
+                results: genItems
+                  .filter(({ title }) => title.includes(query))
+                  .slice(0, 7)
+              }
+            }
+          }
+          console.log(r)
+          return r
+        }
+      }
+    })
+  })
+</script>
+</body>
 </html>

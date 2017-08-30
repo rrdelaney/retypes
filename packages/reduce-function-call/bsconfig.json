@@ -1,0 +1,11 @@
+{
+  "name": "reduce-function-call",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

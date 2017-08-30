@@ -1,0 +1,11 @@
+{
+  "name": "load-script",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}
