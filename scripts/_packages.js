@@ -1,6 +1,7 @@
 const { promisify } = require('util')
 const path = require('path')
 const fs = require('fs')
+const retyped = require('reasonably-typed')
 
 const readFile = promisify(fs.readFile)
 const readdir = promisify(fs.readdir)
@@ -35,7 +36,12 @@ async function getFlowTypedPackages() {
         '.js'
       const packageSource = (await readFile(packageSourceFile)).toString()
 
-      return { name, version: packageVersion, source: packageSource }
+      try {
+        const bindingSource = retyped.compile(packageSource, packageSourceFile)
+        return { name, version: packageVersion, source: bindingSource }
+      } catch (e) {
+        return undefined
+      }
     })
   )
 
@@ -45,7 +51,7 @@ async function getFlowTypedPackages() {
 function createPackageJson(package) {
   return JSON.stringify(
     {
-      name: package.name,
+      name: `@retypes/${package.name}`,
       version: package.version,
       description: `Packaged ReasonML bindings for ${package.name}`,
       repository: 'https://github.com/rrdelaney/retypes',

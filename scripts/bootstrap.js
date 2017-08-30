@@ -5,8 +5,6 @@ const { getFlowTypedPackages, createPackageJson } = require('./_packages')
 const mkdir = promisify(fs.mkdir)
 const writeFile = promisify(fs.writeFile)
 
-async function writePackages(packages) {}
-
 async function run() {
   try {
     await mkdir('packages')
@@ -18,7 +16,11 @@ async function run() {
     p.map(async package => {
       await mkdir(`packages/${package.name}`)
       const packageJSON = createPackageJson(package)
-      await writeFile(`packages/${package.name}/package.json`, packageJSON)
+
+      await Promise.all([
+        writeFile(`packages/${package.name}/package.json`, packageJSON),
+        writeFile(`packages/${package.name}/${package.name}.re`, package.source)
+      ])
     })
   )
 }
