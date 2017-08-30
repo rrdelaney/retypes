@@ -1,11 +1,13 @@
 const { promisify } = require('util')
 const path = require('path')
 const fs = require('fs')
+const child_process = require('child_process')
 const semver = require('semver')
 const retyped = require('reasonably-typed')
 
 const readFile = promisify(fs.readFile)
 const readdir = promisify(fs.readdir)
+const exec = promisify(child_process.exec)
 
 const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
 
@@ -66,4 +68,8 @@ function createPackageJson(package, previousVersion) {
   )
 }
 
-module.exports = { getFlowTypedPackages, createPackageJson }
+async function publish(dir) {
+  await exec(`npm publish ${dir}`)
+}
+
+module.exports = { getFlowTypedPackages, createPackageJson, publish }
