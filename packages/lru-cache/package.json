@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/lru-cache",
-  "version": "4.0.0-0",
-  "description": "Packaged ReasonML bindings for lru-cache",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

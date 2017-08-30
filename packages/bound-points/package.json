@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/bound-points",
-  "version": "1.0.0-0",
-  "description": "Packaged ReasonML bindings for bound-points",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

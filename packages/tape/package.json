@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/tape",
-  "version": "4.5.0-0",
-  "description": "Packaged ReasonML bindings for tape",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/is-path-in-cwd",
-  "version": "1.0.0-0",
-  "description": "Packaged ReasonML bindings for is-path-in-cwd",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

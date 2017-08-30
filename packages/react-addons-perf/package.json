@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/react-addons-perf",
-  "version": "15.0.0-0",
-  "description": "Packaged ReasonML bindings for react-addons-perf",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

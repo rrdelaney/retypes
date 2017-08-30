@@ -35,7 +35,14 @@ async function run() {
     })
   )
 
-  const packageNames = p.map(({ name }) => name)
+  const packageNames = p.reduce(
+    (all, { name }) => ({
+      ...all,
+      [name]: `https://www.npmjs.com/package/@retypes/${name}`
+    }),
+    {}
+  )
+
   await writeFile(
     path.join(__dirname, '..', 'docs', 'generated-packages.json'),
     JSON.stringify({

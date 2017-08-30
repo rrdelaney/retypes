@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/number-is-nan",
-  "version": "1.0.0-0",
-  "description": "Packaged ReasonML bindings for number-is-nan",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

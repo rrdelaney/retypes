@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/checkstyle-formatter",
-  "version": "1.0.0-0",
-  "description": "Packaged ReasonML bindings for checkstyle-formatter",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

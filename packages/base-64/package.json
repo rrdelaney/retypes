@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/base-64",
-  "version": "0.1.0-0",
-  "description": "Packaged ReasonML bindings for base-64",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

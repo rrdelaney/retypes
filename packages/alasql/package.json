@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/alasql",
-  "version": "0.3.0-0",
-  "description": "Packaged ReasonML bindings for alasql",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

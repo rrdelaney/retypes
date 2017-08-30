@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/user-home",
-  "version": "2.0.0-0",
-  "description": "Packaged ReasonML bindings for user-home",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

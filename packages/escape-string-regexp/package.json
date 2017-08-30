@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/escape-string-regexp",
-  "version": "1.0.0-0",
-  "description": "Packaged ReasonML bindings for escape-string-regexp",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

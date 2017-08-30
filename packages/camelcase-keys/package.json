@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/camelcase-keys",
-  "version": "3.0.0-0",
-  "description": "Packaged ReasonML bindings for camelcase-keys",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}

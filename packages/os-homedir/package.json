@@ -1,8 +1,0 @@
-{
-  "name": "@retypes/os-homedir",
-  "version": "1.0.0-0",
-  "description": "Packaged ReasonML bindings for os-homedir",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
