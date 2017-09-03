@@ -8,7 +8,7 @@ const retyped = require('reasonably-typed')
 
 const readFile = promisify(fs.readFile)
 const readdir = promisify(fs.readdir)
-const spawn = promisify(child_process.spawn)
+const exec = promisify(child_process.exec)
 
 const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
 
@@ -109,10 +109,11 @@ async function diffDir(dir, newFiles) {
 
 async function publish(dir) {
   try {
-    await spawn('npm', ['publish', '--access', 'public', dir])
+    await exec(`npm publish --access public ${dir}`)
     console.log(`${chalk.green('✓')} Published ${dir}`)
   } catch (e) {
-    console.log(`${chalk.green('✘')} Did not publish ${dir}`)
+    console.error(`${chalk.red('✘')} Did not publish ${dir}`)
+    console.error(e.message)
   }
 }
 
