@@ -2,6 +2,7 @@ const { promisify } = require('util')
 const path = require('path')
 const fs = require('fs')
 const child_process = require('child_process')
+const chalk = require('chalk')
 const semver = require('semver')
 const retyped = require('reasonably-typed')
 
@@ -40,8 +41,17 @@ async function getFlowTypedPackages() {
       const packageSource = (await readFile(packageSourceFile)).toString()
 
       try {
-        const bindingSource = retyped.compile(packageSource, packageSourceFile)
-        return { name, version: packageVersion, source: bindingSource }
+        const [moduleName, bindingSource] = retyped.compile(
+          packageSource,
+          packageSourceFile,
+          true
+        )
+        return {
+          name,
+          moduleName,
+          version: packageVersion,
+          source: bindingSource
+        }
       } catch (e) {
         return undefined
       }
@@ -72,7 +82,6 @@ function createBsConfig(package) {
   return JSON.stringify(
     {
       name: package.name,
-      reason: { 'react-jsx': 2 },
       sources: [{ dir: 'src' }]
     },
     null,
@@ -80,15 +89,32 @@ function createBsConfig(package) {
   )
 }
 
+async function diffDir(dir, newFiles) {
+  const files = await readdir(dir)
+
+  const diffs = await Promise.all(
+    Object.entries(newFiles).map(async ([name, newContents]) => {
+      try {
+        const oldContents = (await readFile(path.join(dir, name))).toString()
+        return newContents === oldContents
+      } catch (e) {
+        return false
+      }
+    })
+  )
+
+  return diffs.every(r => r === true)
+}
+
 async function publish(dir) {
-  await spawn('npm', ['publish', '--access', 'public', dir], {
-    stdio: 'inherit'
-  })
+  await spawn('npm', ['publish', '--access', 'public', dir])
+  console.log(`${chalk.green('✓')} Published ${dir}`)
 }
 
 module.exports = {
   getFlowTypedPackages,
   createPackageJson,
   createBsConfig,
+  diffDir,
   publish
 }
