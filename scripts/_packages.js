@@ -7,7 +7,7 @@ const retyped = require('reasonably-typed')
 
 const readFile = promisify(fs.readFile)
 const readdir = promisify(fs.readdir)
-const exec = promisify(child_process.exec)
+const spawn = promisify(child_process.spawn)
 
 const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
 
@@ -81,7 +81,9 @@ function createBsConfig(package) {
 }
 
 async function publish(dir) {
-  await exec(`npm publish ${dir}`)
+  await spawn('npm', ['publish', '--access', 'public', dir], {
+    stdio: 'inherit'
+  })
 }
 
 module.exports = {
