@@ -108,8 +108,12 @@ async function diffDir(dir, newFiles) {
 }
 
 async function publish(dir) {
-  await spawn('npm', ['publish', '--access', 'public', dir])
-  console.log(`${chalk.green('✓')} Published ${dir}`)
+  try {
+    await spawn('npm', ['publish', '--access', 'public', dir])
+    console.log(`${chalk.green('✓')} Published ${dir}`)
+  } catch (e) {
+    console.log(`${chalk.green('✘')} Did not publish ${dir}`)
+  }
 }
 
 module.exports = {
