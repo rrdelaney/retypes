@@ -1,8 +1,8 @@
 {
   "name": "react-addons-css-transition-group",
-  "reason": {
-    "react-jsx": 2
-  },
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
   "sources": [
     {
       "dir": "src"

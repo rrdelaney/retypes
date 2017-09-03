@@ -1,6 +1,6 @@
 {
   "name": "@retypes/es6-error",
-  "version": "4.0.0-0",
+  "version": "4.0.0-1",
   "description": "Packaged ReasonML bindings for es6-error",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

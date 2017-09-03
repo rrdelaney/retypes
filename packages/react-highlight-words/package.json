@@ -1,6 +1,6 @@
 {
   "name": "@retypes/react-highlight-words",
-  "version": "0.4.0-0",
+  "version": "0.4.0-1",
   "description": "Packaged ReasonML bindings for react-highlight-words",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

@@ -82,6 +82,7 @@ function createBsConfig(package) {
   return JSON.stringify(
     {
       name: package.name,
+      'bsc-flags': ['-bs-super-errors'],
       sources: [{ dir: 'src' }]
     },
     null,

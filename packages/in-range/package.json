@@ -1,6 +1,6 @@
 {
   "name": "@retypes/in-range",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "Packaged ReasonML bindings for in-range",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

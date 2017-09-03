@@ -1,6 +1,6 @@
 {
   "name": "@retypes/jasmine",
-  "version": "2.4.0-0",
+  "version": "2.4.0-1",
   "description": "Packaged ReasonML bindings for jasmine",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

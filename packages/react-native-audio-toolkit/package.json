@@ -1,6 +1,6 @@
 {
   "name": "@retypes/react-native-audio-toolkit",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "Packaged ReasonML bindings for react-native-audio-toolkit",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

@@ -1,8 +1,8 @@
 {
   "name": "load-script",
-  "reason": {
-    "react-jsx": 2
-  },
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
   "sources": [
     {
       "dir": "src"

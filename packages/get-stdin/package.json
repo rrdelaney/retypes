@@ -1,6 +1,6 @@
 {
   "name": "@retypes/get-stdin",
-  "version": "5.0.0-0",
+  "version": "5.0.0-1",
   "description": "Packaged ReasonML bindings for get-stdin",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

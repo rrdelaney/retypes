@@ -1,6 +1,6 @@
 {
   "name": "@retypes/mkdirp",
-  "version": "0.5.0-0",
+  "version": "0.5.0-1",
   "description": "Packaged ReasonML bindings for mkdirp",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

@@ -1,6 +1,6 @@
 {
   "name": "@retypes/clamp-js",
-  "version": "0.7.0-0",
+  "version": "0.7.0-1",
   "description": "Packaged ReasonML bindings for clamp-js",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

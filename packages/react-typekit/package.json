@@ -1,6 +1,6 @@
 {
   "name": "@retypes/react-typekit",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "Packaged ReasonML bindings for react-typekit",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

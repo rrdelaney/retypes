@@ -1,6 +1,6 @@
 {
   "name": "@retypes/node-mime",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "Packaged ReasonML bindings for node-mime",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

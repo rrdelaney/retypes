@@ -1,6 +1,6 @@
 {
   "name": "@retypes/is-finite",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "Packaged ReasonML bindings for is-finite",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

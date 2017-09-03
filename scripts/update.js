@@ -48,8 +48,8 @@ async function run() {
     await mkdir(`packages/${package.name}/src`)
 
     await Promise.all([
-      writeFile(`packages/${package.name}/package.json`, packageJSON),
-      writeFile(`packages/${package.name}/bsconfig.json`, bsConfig),
+      writeFile(`packages/${package.name}/package.json`, package.packageJSON),
+      writeFile(`packages/${package.name}/bsconfig.json`, package.bsConfig),
       writeFile(
         `packages/${package.name}/src/${package.moduleName}.re`,
         package.source

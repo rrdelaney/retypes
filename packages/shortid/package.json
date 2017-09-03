@@ -1,6 +1,6 @@
 {
   "name": "@retypes/shortid",
-  "version": "2.2.0-0",
+  "version": "2.2.0-1",
   "description": "Packaged ReasonML bindings for shortid",
   "repository": "https://github.com/rrdelaney/retypes",
   "author": "",

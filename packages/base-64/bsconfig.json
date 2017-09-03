@@ -1,8 +1,8 @@
 {
   "name": "base-64",
-  "reason": {
-    "react-jsx": 2
-  },
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
   "sources": [
     {
       "dir": "src"

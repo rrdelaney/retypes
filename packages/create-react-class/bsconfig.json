@@ -1,8 +1,8 @@
 {
   "name": "create-react-class",
-  "reason": {
-    "react-jsx": 2
-  },
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
   "sources": [
     {
       "dir": "src"
