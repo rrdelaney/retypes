@@ -3,7 +3,9 @@ const path = require('path')
 const fs = require('fs')
 const rimraf = promisify(require('rimraf'))
 const chalk = require('chalk')
+const ora = require('ora')
 const {
+  getDefinitelyTypedPackages,
   getFlowTypedPackages,
   createPackageJson,
   createBsConfig,
@@ -14,7 +16,30 @@ const mkdir = promisify(fs.mkdir)
 const writeFile = promisify(fs.writeFile)
 
 async function run() {
-  const p = await getFlowTypedPackages()
+  const spinner = ora('Compiling packages')
+  spinner.start()
+
+  const setName = name => {
+    spinner.text = `Compiling ${name}`
+  }
+
+  const [flowTypedPackages, definitelyTypedPackages] = await Promise.all([
+    getFlowTypedPackages(setName),
+    getDefinitelyTypedPackages(setName)
+  ])
+
+  const packageMap = new Map()
+  const p = [
+    ...flowTypedPackages,
+    ...definitelyTypedPackages
+  ].filter(({ name }) => {
+    if (packageMap.get(name)) return false
+
+    packageMap.set(name, true)
+    return true
+  })
+
+  spinner.succeed(`Compiled ${p.length} packages`)
 
   const allPackages = await Promise.all(
     p.map(async package => {

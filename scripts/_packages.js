@@ -4,45 +4,55 @@ const fs = require('fs')
 const child_process = require('child_process')
 const chalk = require('chalk')
 const semver = require('semver')
+const pLimit = require('p-limit')
 const retyped = require('reasonably-typed')
 
 const readFile = promisify(fs.readFile)
 const readdir = promisify(fs.readdir)
 const exec = promisify(child_process.exec)
+const limit = pLimit(5)
 
 const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
 const TS_ROOT = path.join(__dirname, '..', 'DefinitelyTyped', 'types')
 
-async function getDefinitelyTypedPackages() {
+async function getDefinitelyTypedPackages(cb) {
   const dtDir = await readdir(TS_ROOT)
   const dtFiles = await Promise.all(
-    dtDir.map(async packageName => {
-      try {
-        const packageSourceFile = path.join(TS_ROOT, packageName, 'index.d.ts')
-        const packageSource = (await readFile(packageSourceFile)).toString()
+    dtDir.map(packageName =>
+      limit(async () => {
+        try {
+          const packageSourceFile = path.join(
+            TS_ROOT,
+            packageName,
+            'index.d.ts'
+          )
+          const packageSource = (await readFile(packageSourceFile)).toString()
 
-        const [moduleName, bindingSource] = retyped.compile(
-          packageSource,
-          packageSourceFile,
-          true
-        )
+          if (cb) cb(packageName)
 
-        return {
-          name: packageName,
-          moduleName,
-          version: '1.0.0',
-          source: bindingSource
+          const [moduleName, bindingSource] = retyped.compile(
+            packageSource,
+            packageSourceFile,
+            true
+          )
+
+          return {
+            name: packageName,
+            moduleName,
+            version: '1.0.0',
+            source: bindingSource
+          }
+        } catch (e) {
+          return undefined
         }
-      } catch (e) {
-        return undefined
-      }
-    })
+      })
+    )
   )
 
   return dtFiles.filter(p => p !== undefined)
 }
 
-async function getFlowTypedPackages() {
+async function getFlowTypedPackages(cb) {
   const flowFiles = await readdir(FLOW_ROOT)
   const packagePaths = flowFiles.reduce((libs, libDir) => {
     const libName = libDir.split('_v')[0]
@@ -54,38 +64,43 @@ async function getFlowTypedPackages() {
   }, {})
 
   const packages = await Promise.all(
-    Object.entries(packagePaths).map(async ([name, packagePath]) => {
-      if (path.basename(packagePath).startsWith('@')) return undefined
+    Object.entries(packagePaths).map(([name, packagePath]) =>
+      limit(async () => {
+        if (path.basename(packagePath).startsWith('@')) return undefined
 
-      const allVersions = (await readdir(packagePath)).filter(f =>
-        f.startsWith('flow')
-      )
-      const latestVersion = allVersions.sort()[allVersions.length - 1]
-      const packageVersion = path
-        .basename(packagePath)
-        .split('_v')[1]
-        .replace(/x/g, '0')
-      const packageSourceFile =
-        path.join(packagePath, latestVersion, path.basename(packagePath)) +
-        '.js'
-      const packageSource = (await readFile(packageSourceFile)).toString()
-
-      try {
-        const [moduleName, bindingSource] = retyped.compile(
-          packageSource,
-          packageSourceFile,
-          true
+        const allVersions = (await readdir(packagePath)).filter(f =>
+          f.startsWith('flow')
         )
-        return {
-          name,
-          moduleName,
-          version: packageVersion,
-          source: bindingSource
+        const latestVersion = allVersions.sort()[allVersions.length - 1]
+        const packageVersion = path
+          .basename(packagePath)
+          .split('_v')[1]
+          .replace(/x/g, '0')
+        const packageSourceFile =
+          path.join(packagePath, latestVersion, path.basename(packagePath)) +
+          '.js'
+        const packageSource = (await readFile(packageSourceFile)).toString()
+
+        try {
+          if (cb) cb(name)
+
+          const [moduleName, bindingSource] = retyped.compile(
+            packageSource,
+            packageSourceFile,
+            true
+          )
+
+          return {
+            name,
+            moduleName,
+            version: packageVersion,
+            source: bindingSource
+          }
+        } catch (e) {
+          return undefined
         }
-      } catch (e) {
-        return undefined
-      }
-    })
+      })
+    )
   )
 
   return packages.filter(p => p !== undefined)
