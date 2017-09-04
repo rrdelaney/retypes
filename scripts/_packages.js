@@ -14,7 +14,32 @@ const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
 const TS_ROOT = path.join(__dirname, '..', 'DefinitelyTyped', 'types')
 
 async function getDefinitelyTypedPackages() {
-  const dtFiles = await readdir(TS_ROOT)
+  const dtDir = await readdir(TS_ROOT)
+  const dtFiles = await Promise.all(
+    dtDir.map(async packageName => {
+      try {
+        const packageSourceFile = path.join(TS_ROOT, packageName, 'index.d.ts')
+        const packageSource = (await readFile(packageSourceFile)).toString()
+
+        const [moduleName, bindingSource] = retyped.compile(
+          packageSource,
+          packageSourceFile,
+          true
+        )
+
+        return {
+          name: packageName,
+          moduleName,
+          version: '1.0.0',
+          source: bindingSource
+        }
+      } catch (e) {
+        return undefined
+      }
+    })
+  )
+
+  return dtFiles.filter(p => p !== undefined)
 }
 
 async function getFlowTypedPackages() {
@@ -123,6 +148,7 @@ async function publish(dir) {
 }
 
 module.exports = {
+  getDefinitelyTypedPackages,
   getFlowTypedPackages,
   createPackageJson,
   createBsConfig,
