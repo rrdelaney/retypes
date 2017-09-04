@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/moment-timezone",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for moment-timezone",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

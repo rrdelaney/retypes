@@ -1,0 +1,11 @@
+{
+  "name": "cordova_app_version_plugin",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

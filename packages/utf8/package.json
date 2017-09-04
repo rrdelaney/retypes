@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/utf8",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for utf8",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/koa-router",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for koa-router",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

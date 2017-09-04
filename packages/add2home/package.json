@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/add2home",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for add2home",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

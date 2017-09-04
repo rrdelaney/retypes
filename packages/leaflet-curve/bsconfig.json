@@ -1,0 +1,11 @@
+{
+  "name": "leaflet-curve",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

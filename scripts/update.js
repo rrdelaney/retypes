@@ -85,4 +85,4 @@ async function run() {
   })
 }
 
-run().catch(e => console.error(e.message))
+run().catch(e => console.error(chalk.red(e)))

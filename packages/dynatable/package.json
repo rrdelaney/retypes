@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/dynatable",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for dynatable",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

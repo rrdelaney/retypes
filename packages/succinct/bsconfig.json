@@ -1,0 +1,11 @@
+{
+  "name": "succinct",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

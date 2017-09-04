@@ -1,0 +1,11 @@
+{
+  "name": "geojson2osm",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

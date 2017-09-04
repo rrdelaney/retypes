@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/react-native-touch-id",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for react-native-touch-id",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

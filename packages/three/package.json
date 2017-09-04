@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/three",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for three",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

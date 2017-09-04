@@ -1,0 +1,72 @@
+module UsersRyanDocumentsDevRetypesDefinitelyTypedTypesFlexsliderIndex = {
+  type sliderObject =
+    Js.t {
+      ..
+      container : 'any,
+      slides : 'any,
+      count : float,
+      currentSlide : float,
+      animatingTo : float,
+      animating : Js.boolean,
+      atEnd : Js.boolean,
+      manualPause : Js.boolean,
+      controlNav : 'any,
+      directionNav : 'any,
+      controlsContainer : 'any,
+      manualControls : 'any,
+      flexAnimate : target::'any => pause::'any? => unit => 'any,
+      pause : unit => 'any,
+      resume : unit => 'any,
+      canAdvance : target::'any => Js.boolean,
+      getTarget : dir::'any => 'any
+    };
+  type flexSliderOptions =
+    Js.t {
+      ..
+      namespace : string,
+      selector : string,
+      animation : string,
+      easing : string,
+      direction : string,
+      reverse : Js.boolean,
+      animationLoop : Js.boolean,
+      smoothHeight : Js.boolean,
+      startAt : float,
+      slideshow : Js.boolean,
+      slideshowSpeed : float,
+      animationSpeed : float,
+      initDelay : float,
+      randomize : Js.boolean,
+      pauseOnAction : Js.boolean,
+      pauseOnHover : Js.boolean,
+      useCSS : Js.boolean,
+      touch : Js.boolean,
+      video : Js.boolean,
+      controlNav : 'any,
+      directionNav : Js.boolean,
+      prevText : string,
+      nextText : string,
+      keyboard : Js.boolean,
+      multipleKeyboard : Js.boolean,
+      mousewheel : Js.boolean,
+      pausePlay : Js.boolean,
+      pauseText : string,
+      playText : string,
+      controlsContainer : string,
+      manualControls : string,
+      sync : string,
+      asNavFor : string,
+      itemWidth : float,
+      itemMargin : float,
+      minItems : float,
+      maxItems : float,
+      move : float,
+      start : slider::sliderObject => 'any,
+      before : slider::sliderObject => 'any,
+      after : slider::sliderObject => 'any,
+      _end : slider::sliderObject => 'any,
+      added : slider::sliderObject => 'any,
+      removed : slider::sliderObject => 'any
+    };
+  type jQuery = Js.t {.. flexslider : options::flexSliderOptions? => unit => 'any};
+};

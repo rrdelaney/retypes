@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/pad",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for pad",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

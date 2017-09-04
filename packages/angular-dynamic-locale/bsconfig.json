@@ -1,0 +1,11 @@
+{
+  "name": "angular-dynamic-locale",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

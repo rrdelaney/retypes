@@ -1,0 +1,11 @@
+{
+  "name": "amplify-deferred",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

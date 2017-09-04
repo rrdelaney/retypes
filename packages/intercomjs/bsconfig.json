@@ -1,0 +1,11 @@
+{
+  "name": "intercomjs",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

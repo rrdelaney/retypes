@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/notify",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for notify",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

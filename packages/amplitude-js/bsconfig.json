@@ -1,0 +1,11 @@
+{
+  "name": "amplitude-js",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

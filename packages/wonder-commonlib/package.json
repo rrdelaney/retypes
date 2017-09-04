@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/wonder-commonlib",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for wonder-commonlib",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

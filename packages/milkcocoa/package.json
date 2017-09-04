@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/milkcocoa",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for milkcocoa",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "add2home",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

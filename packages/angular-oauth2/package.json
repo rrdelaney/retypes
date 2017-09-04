@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/angular-oauth2",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for angular-oauth2",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

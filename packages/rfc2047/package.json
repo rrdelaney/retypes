@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/rfc2047",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for rfc2047",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

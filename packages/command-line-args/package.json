@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/command-line-args",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for command-line-args",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

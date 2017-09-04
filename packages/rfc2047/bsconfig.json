@@ -1,0 +1,11 @@
+{
+  "name": "rfc2047",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

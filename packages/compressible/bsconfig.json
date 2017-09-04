@@ -1,0 +1,11 @@
+{
+  "name": "compressible",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

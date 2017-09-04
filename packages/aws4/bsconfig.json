@@ -1,0 +1,11 @@
+{
+  "name": "aws4",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

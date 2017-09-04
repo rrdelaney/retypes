@@ -1,0 +1,11 @@
+{
+  "name": "pikaday",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "signature_pad",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

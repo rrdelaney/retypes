@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/gridstack",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for gridstack",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

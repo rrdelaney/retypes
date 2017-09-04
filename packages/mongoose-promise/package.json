@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/mongoose-promise",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for mongoose-promise",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

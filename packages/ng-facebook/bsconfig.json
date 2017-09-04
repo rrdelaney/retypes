@@ -1,0 +1,11 @@
+{
+  "name": "ng-facebook",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

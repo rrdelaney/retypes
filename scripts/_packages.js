@@ -30,7 +30,7 @@ async function getDefinitelyTypedPackages(cb) {
 
           if (cb) cb(packageName)
 
-          const [moduleName, bindingSource] = retyped.compile(
+          const [_moduleName, bindingSource] = retyped.compile(
             packageSource,
             packageSourceFile,
             true
@@ -38,7 +38,7 @@ async function getDefinitelyTypedPackages(cb) {
 
           return {
             name: packageName,
-            moduleName,
+            moduleName: packageName.replace(/\-/g, '_'),
             version: '1.0.0',
             source: bindingSource
           }
@@ -136,7 +136,12 @@ function createBsConfig(package) {
 }
 
 async function diffDir(dir, newFiles) {
-  const files = await readdir(dir)
+  let files
+  try {
+    files = await readdir(dir)
+  } catch (e) {
+    return false
+  }
 
   const diffs = await Promise.all(
     Object.entries(newFiles).map(async ([name, newContents]) => {

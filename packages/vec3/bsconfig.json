@@ -1,0 +1,11 @@
+{
+  "name": "vec3",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

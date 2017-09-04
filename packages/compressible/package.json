@@ -1,0 +1,8 @@
+{
+  "name": "@retypes/compressible",
+  "version": "1.0.0-1",
+  "description": "Packaged ReasonML bindings for compressible",
+  "repository": "https://github.com/rrdelaney/retypes",
+  "author": "",
+  "license": "UNLICENSED"
+}

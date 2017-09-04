@@ -1,0 +1,11 @@
+{
+  "name": "jasmine_dom_matchers",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}

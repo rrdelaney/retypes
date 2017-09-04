@@ -1,0 +1,11 @@
+{
+  "name": "istanbul-middleware",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "sources": [
+    {
+      "dir": "src"
+    }
+  ]
+}
