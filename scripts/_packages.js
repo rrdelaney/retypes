@@ -11,6 +11,11 @@ const readdir = promisify(fs.readdir)
 const exec = promisify(child_process.exec)
 
 const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
+const TS_ROOT = path.join(__dirname, '..', 'DefinitelyTyped', 'types')
+
+async function getDefinitelyTypedPackages() {
+  const dtFiles = await readdir(TS_ROOT)
+}
 
 async function getFlowTypedPackages() {
   const flowFiles = await readdir(FLOW_ROOT)
