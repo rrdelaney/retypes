@@ -10,7 +10,7 @@ const retyped = require('reasonably-typed')
 const readFile = promisify(fs.readFile)
 const readdir = promisify(fs.readdir)
 const exec = promisify(child_process.exec)
-const limit = pLimit(5)
+const limit = pLimit(2)
 
 const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
 const TS_ROOT = path.join(__dirname, '..', 'DefinitelyTyped', 'types')
@@ -32,7 +32,7 @@ async function getDefinitelyTypedPackages(cb) {
 
           const [_moduleName, bindingSource] = retyped.compile(
             packageSource,
-            packageSourceFile,
+            packageName,
             true
           )
 
