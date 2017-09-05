@@ -19,13 +19,14 @@ async function run() {
   const spinner = ora('Compiling packages')
   spinner.start()
 
-  const setName = name => {
-    spinner.text = `Compiling ${name}`
+  const setName = type => name => {
+    spinner.text = `Compiling ${type}:${name}`
   }
 
   const [flowTypedPackages, definitelyTypedPackages] = await Promise.all([
-    getFlowTypedPackages(setName),
-    getDefinitelyTypedPackages(setName)
+    // getFlowTypedPackages(setName('ft')),
+    Promise.resolve([]),
+    getDefinitelyTypedPackages(setName('dt'))
   ])
 
   const packageMap = new Map()

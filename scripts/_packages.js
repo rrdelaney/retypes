@@ -10,46 +10,74 @@ const retyped = require('reasonably-typed')
 const readFile = promisify(fs.readFile)
 const readdir = promisify(fs.readdir)
 const exec = promisify(child_process.exec)
-const limit = pLimit(2)
+const limit = pLimit(10)
 
 const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
 const TS_ROOT = path.join(__dirname, '..', 'DefinitelyTyped', 'types')
 
 async function getDefinitelyTypedPackages(cb) {
   const dtDir = await readdir(TS_ROOT)
-  const dtFiles = await Promise.all(
-    dtDir.map(packageName =>
-      limit(async () => {
-        try {
-          const packageSourceFile = path.join(
-            TS_ROOT,
-            packageName,
-            'index.d.ts'
-          )
-          const packageSource = (await readFile(packageSourceFile)).toString()
+  const dtFiles = []
 
-          if (cb) cb(packageName)
+  for (let packageName of dtDir) {
+    try {
+      const packageSourceFile = path.join(TS_ROOT, packageName, 'index.d.ts')
+      const packageSource = (await readFile(packageSourceFile)).toString()
 
-          const [_moduleName, bindingSource] = retyped.compile(
-            packageSource,
-            packageName,
-            true
-          )
+      if (cb) cb(packageName)
 
-          return {
-            name: packageName,
-            moduleName: packageName.replace(/\-/g, '_'),
-            version: '1.0.0',
-            source: bindingSource
-          }
-        } catch (e) {
-          return undefined
-        }
+      const [_moduleName, bindingSource] = retyped.compile(
+        packageSource,
+        packageName,
+        true
+      )
+
+      dtFiles.push({
+        name: packageName,
+        moduleName: packageName.replace(/\-/g, '_'),
+        version: '1.0.0',
+        source: bindingSource
       })
-    )
-  )
+    } catch (e) {
+      // return undefined
+    }
+  }
 
-  return dtFiles.filter(p => p !== undefined)
+  return dtFiles
+
+  // const dtFiles = await Promise.all(
+  //   dtDir.map(packageName =>
+  //     limit(async () => {
+  //       try {
+  //         const packageSourceFile = path.join(
+  //           TS_ROOT,
+  //           packageName,
+  //           'index.d.ts'
+  //         )
+  //         const packageSource = (await readFile(packageSourceFile)).toString()
+  //
+  //         if (cb) cb(packageName)
+  //
+  //         const [_moduleName, bindingSource] = retyped.compile(
+  //           packageSource,
+  //           packageName,
+  //           true
+  //         )
+  //
+  //         return {
+  //           name: packageName,
+  //           moduleName: packageName.replace(/\-/g, '_'),
+  //           version: '1.0.0',
+  //           source: bindingSource
+  //         }
+  //       } catch (e) {
+  //         return undefined
+  //       }
+  //     })
+  //   )
+  // )
+  //
+  // return dtFiles.filter(p => p !== undefined)
 }
 
 async function getFlowTypedPackages(cb) {
