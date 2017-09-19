@@ -5,7 +5,7 @@ const {
   getFlowTypedPackages,
   createPackageJson,
   createBsConfig
-} = require('./_packages')
+} = require('./lib/packages')
 
 const mkdir = promisify(fs.mkdir)
 const writeFile = promisify(fs.writeFile)

@@ -1,7 +1,7 @@
 const { promisify } = require('util')
 const fs = require('fs')
 const pLimit = require('p-limit')
-const { publish } = require('./_packages')
+const { publish } = require('./lib/packages')
 
 const readdir = promisify(fs.readdir)
 const limit = pLimit(5)

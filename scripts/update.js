@@ -10,7 +10,7 @@ const {
   createPackageJson,
   createBsConfig,
   diffDir
-} = require('./_packages')
+} = require('./lib/packages')
 
 const mkdir = promisify(fs.mkdir)
 const writeFile = promisify(fs.writeFile)
