@@ -13,6 +13,7 @@ const exec = promisify(child_process.exec)
 const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
 const TS_ROOT = path.join(__dirname, '..', 'DefinitelyTyped', 'types')
 
+/** @deprecated */
 async function getDefinitelyTypedPackages(cb) {
   const dtDir = await readdir(TS_ROOT)
   const dtFiles = []
@@ -42,40 +43,6 @@ async function getDefinitelyTypedPackages(cb) {
   }
 
   return dtFiles
-
-  // const dtFiles = await Promise.all(
-  //   dtDir.map(packageName =>
-  //     limit(async () => {
-  //       try {
-  //         const packageSourceFile = path.join(
-  //           TS_ROOT,
-  //           packageName,
-  //           'index.d.ts'
-  //         )
-  //         const packageSource = (await readFile(packageSourceFile)).toString()
-  //
-  //         if (cb) cb(packageName)
-  //
-  //         const [_moduleName, bindingSource] = retyped.compile(
-  //           packageSource,
-  //           packageName,
-  //           true
-  //         )
-  //
-  //         return {
-  //           name: packageName,
-  //           moduleName: packageName.replace(/\-/g, '_'),
-  //           version: '1.0.0',
-  //           source: bindingSource
-  //         }
-  //       } catch (e) {
-  //         return undefined
-  //       }
-  //     })
-  //   )
-  // )
-  //
-  // return dtFiles.filter(p => p !== undefined)
 }
 
 /**
@@ -95,6 +62,9 @@ async function getFlowTypedFiles() {
   return packagePaths
 }
 
+/**
+ * Compile a FlowTyped package
+ */
 async function compileFlowTypedPackage(name, packagePath, cb) {
   if (path.basename(packagePath).startsWith('@')) return undefined
 
@@ -130,6 +100,7 @@ async function compileFlowTypedPackage(name, packagePath, cb) {
   }
 }
 
+/** @deprecated */
 async function getFlowTypedPackages(cb) {
   const packages = await Promise.all(
     Object.entries(packagePaths).map(async ([name, packagePath]) =>
