@@ -1,0 +1,13 @@
+[ignore]
+.*/packages/.*
+.*/types/.*
+<PROJECT_ROOT>/node_modules/config-chain/test/.*
+<PROJECT_ROOT>/node_modules/esformatter/test/.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]

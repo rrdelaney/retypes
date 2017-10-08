@@ -1351,6 +1351,10 @@ find-up@^2.0.0:
   dependencies:
     locate-path "^2.0.0"
 
+flow-bin@^0.56.0:
+  version "0.56.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.56.0.tgz#ce43092203a344ba9bf63c0cabe95d95145f6cad"
+
 flowgen@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/flowgen/-/flowgen-1.2.0.tgz#3804d6674b3227a97eb4d67faffa36736066a81b"

@@ -1,6 +1,6 @@
 [submodule "flow-typed"]
-	path = flow-typed
+	path = types/flow-typed
 	url = https://github.com/flowtype/flow-typed
 [submodule "DefinitelyTyped"]
-	path = DefinitelyTyped
+	path = types/DefinitelyTyped
 	url = https://github.com/DefinitelyTyped/DefinitelyTyped

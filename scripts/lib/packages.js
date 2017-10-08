@@ -1,3 +1,5 @@
+// @flow
+
 const { promisify } = require('util')
 const path = require('path')
 const fs = require('fs')
@@ -6,15 +8,31 @@ const chalk = require('chalk')
 const semver = require('semver')
 const retyped = require('reasonably-typed')
 
-const readFile = promisify(fs.readFile)
-const readdir = promisify(fs.readdir)
+const readFile /*: (fname: string) => Promise<string> */ = promisify(
+  fs.readFile
+)
+const readdir /*: (fname: string) => Promise<string[]> */ = promisify(
+  fs.readdir
+)
 const exec = promisify(child_process.exec)
 
-const FLOW_ROOT = path.join(__dirname, '..', 'flow-typed', 'definitions', 'npm')
-const TS_ROOT = path.join(__dirname, '..', 'DefinitelyTyped', 'types')
+const TYPE_ROOT = path.join(__dirname, '..', 'types')
+const TS_ROOT = path.join(TYPE_ROOT, 'DefinitelyTyped', 'types')
+const FLOW_ROOT = path.join(TYPE_ROOT, 'flow-typed', 'definitions', 'npm')
+
+/*::
+type package = {
+  name: string,
+  moduleName: string,
+  version: string,
+  source: string
+}
+*/
 
 /** @deprecated */
-async function getDefinitelyTypedPackages(cb) {
+async function getDefinitelyTypedPackages(
+  cb /*: (name: string) => void */
+) /*: Promise<package[]> */ {
   const dtDir = await readdir(TS_ROOT)
   const dtFiles = []
 
@@ -38,7 +56,7 @@ async function getDefinitelyTypedPackages(cb) {
         source: bindingSource
       })
     } catch (e) {
-      // return undefined
+      return []
     }
   }
 
@@ -50,14 +68,17 @@ async function getDefinitelyTypedPackages(cb) {
  */
 async function getFlowTypedFiles() {
   const flowFiles = await readdir(FLOW_ROOT)
-  const packagePaths = flowFiles.reduce((libs, libDir) => {
-    const libName = libDir.split('_v')[0]
+  const packagePaths /*: { [packageName: string]: string } */ = flowFiles.reduce(
+    (libs, libDir) => {
+      const libName = libDir.split('_v')[0]
 
-    return {
-      ...libs,
-      [libName]: path.join(FLOW_ROOT, libDir)
-    }
-  }, {})
+      return {
+        ...libs,
+        [libName]: path.join(FLOW_ROOT, libDir)
+      }
+    },
+    {}
+  )
 
   return packagePaths
 }
@@ -65,7 +86,11 @@ async function getFlowTypedFiles() {
 /**
  * Compile a FlowTyped package
  */
-async function compileFlowTypedPackage(name, packagePath, cb) {
+async function compileFlowTypedPackage(
+  name /*: string */,
+  packagePath /*: string */,
+  cb /*: (name: string) => void */
+) {
   if (path.basename(packagePath).startsWith('@')) return undefined
 
   const allVersions = (await readdir(packagePath)).filter(f =>
@@ -101,17 +126,23 @@ async function compileFlowTypedPackage(name, packagePath, cb) {
 }
 
 /** @deprecated */
-async function getFlowTypedPackages(cb) {
+async function getFlowTypedPackages(cb /*: (name: string) => void */) {
+  const packagePaths = await getFlowTypedFiles()
+
   const packages = await Promise.all(
-    Object.entries(packagePaths).map(async ([name, packagePath]) =>
-      compileFlowTypedPackage(name, packagePath, cb)
-    )
+    Object.entries(packagePaths).map(async ([name, packagePath]) => {
+      if (typeof packagePath !== 'string') return undefined
+      return compileFlowTypedPackage(name, packagePath, cb)
+    })
   )
 
   return packages.filter(p => p !== undefined)
 }
 
-function createPackageJson(package, previousVersion) {
+function createPackageJson(
+  package /*: package */,
+  previousVersion /*: string */
+) {
   return JSON.stringify(
     {
       name: `@retypes/${package.name}`,
@@ -128,7 +159,12 @@ function createPackageJson(package, previousVersion) {
   )
 }
 
-function createBsConfig(package) {
+/**
+ * Create a `bsconfig.json` given a package Object
+ *
+ * @param package Package object to base the resulting `bsconfig.json`
+ */
+function createBsConfig(package /*: package */) {
   return JSON.stringify(
     {
       name: package.name,
@@ -140,7 +176,22 @@ function createBsConfig(package) {
   )
 }
 
-async function diffDir(dir, newFiles) {
+/**
+ * Runs a diff on a given directory
+ *
+ * Give a string representing the directory name,
+ * and an object of keys/values with keys being the
+ * file name and value being file contents you want to
+ * diff against the existing directory
+ *
+ * @param dir Directory path to diff against
+ * @param newFiles Files to diff against
+ * @return True if the directories match, false if not
+ */
+async function diffDir(
+  dir /*: string */,
+  newFiles /*: { [filePath: string]: string } */
+) {
   let files
   try {
     files = await readdir(dir)
@@ -162,7 +213,13 @@ async function diffDir(dir, newFiles) {
   return diffs.every(r => r === true)
 }
 
-async function publish(dir) {
+/**
+ * Publishes a package to npm
+ *
+ * @param dir Package directory to publish
+ * @return Promise resolved when publishing is complete
+ */
+async function publish(dir /*: string */) {
   try {
     await exec(`npm publish --access public ${dir}`)
     console.log(`${chalk.green('✓')} Published ${dir}`)
@@ -172,7 +229,7 @@ async function publish(dir) {
   }
 }
 
-const deprecated = fn => (...args) => {
+const deprecated = fn => (...args /*: any */) => {
   console.error(chalk.red(`\nFunction "${fn.name}" is deprecated.`))
 
   return fn(...args)
