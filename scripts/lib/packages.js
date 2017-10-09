@@ -229,10 +229,12 @@ async function publish(dir /*: string */) {
   }
 }
 
-const deprecated = fn => (...args /*: any */) => {
-  console.error(chalk.red(`\nFunction "${fn.name}" is deprecated.`))
+function deprecated(fn /*: Function */) {
+  return (...args /*: any */) => {
+    console.error(chalk.red(`\nFunction "${fn.name}" is deprecated.`))
 
-  return fn(...args)
+    return fn(...args)
+  }
 }
 
 module.exports = {

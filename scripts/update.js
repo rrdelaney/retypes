@@ -1,3 +1,5 @@
+// @flow
+
 const { promisify } = require('util')
 const path = require('path')
 const fs = require('fs')
@@ -12,8 +14,10 @@ const {
   diffDir
 } = require('./lib/packages')
 
-const mkdir = promisify(fs.mkdir)
-const writeFile = promisify(fs.writeFile)
+const mkdir /*: (dirName: string) => void */ = promisify(fs.mkdir)
+const writeFile /*: (fname: string, data: string | Buffer) => void */ = promisify(
+  fs.writeFile
+)
 
 async function run() {
   const spinner = ora('Compiling packages')
@@ -24,9 +28,9 @@ async function run() {
   }
 
   const [flowTypedPackages, definitelyTypedPackages] = await Promise.all([
-    // getFlowTypedPackages(setName('ft')),
-    Promise.resolve([]),
-    getDefinitelyTypedPackages(setName('dt'))
+    getFlowTypedPackages(setName('ft')),
+    Promise.resolve([])
+    // getDefinitelyTypedPackages(setName('dt'))
   ])
 
   const packageMap = new Map()
@@ -44,7 +48,8 @@ async function run() {
 
   const allPackages = await Promise.all(
     p.map(async package => {
-      const packageJSON = createPackageJson(package)
+      // TODO: add previous version to createPackageJson
+      const packageJSON = createPackageJson(package, '')
       const bsConfig = createBsConfig(package)
 
       const newDir = {
