@@ -6,13 +6,17 @@ const fs = require('fs')
 const rimraf = promisify(require('rimraf'))
 const chalk = require('chalk')
 const ora = require('ora')
+const { default: Worker } = require('jest-worker')
+/*:: import typeof * as Lib from './lib/packages' */
+
 const {
   getDefinitelyTypedPackages,
-  getFlowTypedPackages,
+  getFlowTypedFiles,
+  compileFlowTypedPackage,
   createPackageJson,
   createBsConfig,
   diffDir
-} = require('./lib/packages')
+} /*: Lib */ = new Worker(require.resolve('./lib/packages'))
 
 const mkdir /*: (dirName: string) => void */ = promisify(fs.mkdir)
 const writeFile /*: (fname: string, data: string | Buffer) => void */ = promisify(
@@ -28,7 +32,7 @@ async function run() {
   }
 
   const [flowTypedPackages, definitelyTypedPackages] = await Promise.all([
-    getFlowTypedPackages(setName('ft')),
+    getFlowTypedFiles(),
     Promise.resolve([])
     // getDefinitelyTypedPackages(setName('dt'))
   ])

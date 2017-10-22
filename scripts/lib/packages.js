@@ -88,8 +88,7 @@ async function getFlowTypedFiles() {
  */
 async function compileFlowTypedPackage(
   name /*: string */,
-  packagePath /*: string */,
-  cb /*: (name: string) => void */
+  packagePath /*: string */
 ) {
   if (path.basename(packagePath).startsWith('@')) return undefined
 
@@ -106,8 +105,6 @@ async function compileFlowTypedPackage(
   const packageSource = (await readFile(packageSourceFile)).toString()
 
   try {
-    if (cb) cb(name)
-
     const [moduleName, bindingSource] = retyped.compile(
       packageSource,
       packageSourceFile,
