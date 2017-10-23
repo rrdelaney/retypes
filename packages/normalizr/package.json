@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/normalizr",
-  "version": "2.0.0-1",
-  "description": "Packaged ReasonML bindings for normalizr",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

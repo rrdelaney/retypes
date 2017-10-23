@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/is-archive",
-  "version": "1.0.0-1",
-  "description": "Packaged ReasonML bindings for is-archive",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

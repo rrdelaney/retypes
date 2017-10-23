@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/file-type",
-  "version": "3.0.0-1",
-  "description": "Packaged ReasonML bindings for file-type",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

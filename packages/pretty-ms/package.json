@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/pretty-ms",
-  "version": "3.0.0-1",
-  "description": "Packaged ReasonML bindings for pretty-ms",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

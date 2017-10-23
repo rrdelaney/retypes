@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/log4js",
-  "version": "1.0.0-1",
-  "description": "Packaged ReasonML bindings for log4js",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

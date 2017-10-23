@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/is-url-superb",
-  "version": "2.0.0-1",
-  "description": "Packaged ReasonML bindings for is-url-superb",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

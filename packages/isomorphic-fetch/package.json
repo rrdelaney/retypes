@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/isomorphic-fetch",
-  "version": "2.0.0-1",
-  "description": "Packaged ReasonML bindings for isomorphic-fetch",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

@@ -24,19 +24,35 @@ async function run() {
     spinner.text = `Compiling ${type}:${name}`
   }
 
-  const [flowTypedFiles, definitelyTypedPackages] = await Promise.all([
-    lib.getFlowTypedFiles(),
-    Promise.resolve([])
-    // lib.getDefinitelyTypedPackages(setName('dt'))
+  const [flowTypedPackages, definitelyTypedPackages] = await Promise.all([
+    (async () => {
+      const flowTypedFiles = await lib.getFlowTypedFiles()
+
+      return (await Promise.all(
+        Object.entries(flowTypedFiles).map(([name, packagePath]) => {
+          if (typeof packagePath !== 'string')
+            throw new Error('expected string')
+          setName('ft')(name)
+          return lib.compileFlowTypedPackage(name, packagePath)
+        })
+      )).filter(p => !!p)
+    })(),
+
+    (async () => {
+      const definitelyTypedFiles = lib.getDefinitelyTypedFiles()
+
+      return (await Promise.all(
+        Object.entries(definitelyTypedFiles).map(([name, packagePath]) => {
+          if (typeof packagePath !== 'string')
+            throw new Error('expected string')
+          setName('dt')(name)
+          return lib.compileDefinitelyTypedPackage(name, packagePath)
+        })
+      )).filter(p => !!p)
+    })()
   ])
 
-  const flowTypedPackages = (await Promise.all(
-    Object.entries(flowTypedFiles).map(([name, packagePath]) => {
-      if (typeof packagePath !== 'string') throw new Error('expected string')
-      setName('ft')(name)
-      return lib.compileFlowTypedPackage(name, packagePath)
-    })
-  )).filter(p => !!p)
+  console.error(definitelyTypedPackages.length)
 
   const packageSet = new Set()
   const p = [

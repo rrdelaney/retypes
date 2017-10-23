@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/pluralize",
-  "version": "3.0.0-1",
-  "description": "Packaged ReasonML bindings for pluralize",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

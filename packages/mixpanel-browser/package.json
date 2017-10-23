@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/mixpanel-browser",
-  "version": "2.11.0-1",
-  "description": "Packaged ReasonML bindings for mixpanel-browser",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

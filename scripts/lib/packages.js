@@ -29,6 +29,45 @@ type Package = {
 }
 */
 
+async function getDefinitelyTypedFiles() {
+  const tsFiles = await readdir(TS_ROOT)
+  const packagePaths /*: { [packageName: string]: string } */ = tsFiles.reduce(
+    (libs, libDir) => {
+      return {
+        ...libs,
+        [libDir]: path.join(TS_ROOT, libDir, 'index.d.ts')
+      }
+    },
+    {}
+  )
+
+  return packagePaths
+}
+
+async function compileDefinitelyTypedPackage(
+  name /*: string */,
+  packagePath /*: string */
+) /*: Promise<?Package> */ {
+  const packageSource = (await readFile(packagePath)).toString()
+
+  try {
+    const [_moduleName, bindingSource] = retyped.compile(
+      packageSource,
+      name,
+      true
+    )
+
+    return {
+      name,
+      moduleName: name.replace(/\-/g, '_'),
+      version: '1.0.0',
+      source: bindingSource
+    }
+  } catch (e) {
+    return undefined
+  }
+}
+
 /** @deprecated */
 async function getDefinitelyTypedPackages(
   cb /*: (name: string) => void */
@@ -88,8 +127,7 @@ async function getFlowTypedFiles() {
  */
 async function compileFlowTypedPackage(
   name /*: string */,
-  packagePath /*: string */,
-  cb /*: ?any */
+  packagePath /*: string */
 ) /*: Promise<?Package> */ {
   if (path.basename(packagePath).startsWith('@')) return undefined
 
@@ -130,7 +168,7 @@ async function getFlowTypedPackages(cb /*: (name: string) => void */) {
   const packages = await Promise.all(
     Object.entries(packagePaths).map(async ([name, packagePath]) => {
       if (typeof packagePath !== 'string') return undefined
-      return compileFlowTypedPackage(name, packagePath, cb)
+      return compileFlowTypedPackage(name, packagePath)
     })
   )
 
@@ -236,6 +274,8 @@ function deprecated(fn /*: Function */) {
 }
 
 module.exports = {
+  getDefinitelyTypedFiles,
+  compileDefinitelyTypedPackage,
   getDefinitelyTypedPackages: deprecated(getDefinitelyTypedPackages),
   getFlowTypedFiles,
   compileFlowTypedPackage,

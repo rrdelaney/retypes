@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/is-path-cwd",
-  "version": "1.0.0-1",
-  "description": "Packaged ReasonML bindings for is-path-cwd",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]

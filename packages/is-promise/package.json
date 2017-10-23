@@ -1,8 +1,1 @@
-{
-  "name": "@retypes/is-promise",
-  "version": "2.0.0-1",
-  "description": "Packaged ReasonML bindings for is-promise",
-  "repository": "https://github.com/rrdelaney/retypes",
-  "author": "",
-  "license": "UNLICENSED"
-}
+[object Promise]
