@@ -16,12 +16,12 @@ const readdir /*: (fname: string) => Promise<string[]> */ = promisify(
 )
 const exec = promisify(child_process.exec)
 
-const TYPE_ROOT = path.join(__dirname, '..', 'types')
+const TYPE_ROOT = path.join(__dirname, '..', '..', 'types')
 const TS_ROOT = path.join(TYPE_ROOT, 'DefinitelyTyped', 'types')
 const FLOW_ROOT = path.join(TYPE_ROOT, 'flow-typed', 'definitions', 'npm')
 
 /*::
-type package = {
+type Package = {
   name: string,
   moduleName: string,
   version: string,
@@ -32,7 +32,7 @@ type package = {
 /** @deprecated */
 async function getDefinitelyTypedPackages(
   cb /*: (name: string) => void */
-) /*: Promise<package[]> */ {
+) /*: Promise<Package[]> */ {
   const dtDir = await readdir(TS_ROOT)
   const dtFiles = []
 
@@ -88,8 +88,9 @@ async function getFlowTypedFiles() {
  */
 async function compileFlowTypedPackage(
   name /*: string */,
-  packagePath /*: string */
-) {
+  packagePath /*: string */,
+  cb /*: ?any */
+) /*: Promise<?Package> */ {
   if (path.basename(packagePath).startsWith('@')) return undefined
 
   const allVersions = (await readdir(packagePath)).filter(f =>
@@ -137,7 +138,7 @@ async function getFlowTypedPackages(cb /*: (name: string) => void */) {
 }
 
 function createPackageJson(
-  package /*: package */,
+  package /*: Package */,
   previousVersion /*: string */
 ) {
   return JSON.stringify(
@@ -161,7 +162,7 @@ function createPackageJson(
  *
  * @param package Package object to base the resulting `bsconfig.json`
  */
-function createBsConfig(package /*: package */) {
+function createBsConfig(package /*: Package */) {
   return JSON.stringify(
     {
       name: package.name,

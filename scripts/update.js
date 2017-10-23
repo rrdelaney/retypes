@@ -9,14 +9,7 @@ const ora = require('ora')
 const { default: Worker } = require('jest-worker')
 /*:: import typeof * as Lib from './lib/packages' */
 
-const {
-  getDefinitelyTypedPackages,
-  getFlowTypedFiles,
-  compileFlowTypedPackage,
-  createPackageJson,
-  createBsConfig,
-  diffDir
-} /*: Lib */ = new Worker(require.resolve('./lib/packages'))
+const lib = new Worker(require.resolve('./lib/packages'))
 
 const mkdir /*: (dirName: string) => void */ = promisify(fs.mkdir)
 const writeFile /*: (fname: string, data: string | Buffer) => void */ = promisify(
@@ -31,20 +24,28 @@ async function run() {
     spinner.text = `Compiling ${type}:${name}`
   }
 
-  const [flowTypedPackages, definitelyTypedPackages] = await Promise.all([
-    getFlowTypedFiles(),
+  const [flowTypedFiles, definitelyTypedPackages] = await Promise.all([
+    lib.getFlowTypedFiles(),
     Promise.resolve([])
-    // getDefinitelyTypedPackages(setName('dt'))
+    // lib.getDefinitelyTypedPackages(setName('dt'))
   ])
 
-  const packageMap = new Map()
+  const flowTypedPackages = (await Promise.all(
+    Object.entries(flowTypedFiles).map(([name, packagePath]) => {
+      if (typeof packagePath !== 'string') throw new Error('expected string')
+      setName('ft')(name)
+      return lib.compileFlowTypedPackage(name, packagePath)
+    })
+  )).filter(p => !!p)
+
+  const packageSet = new Set()
   const p = [
     ...flowTypedPackages,
     ...definitelyTypedPackages
   ].filter(({ name }) => {
-    if (packageMap.get(name)) return false
+    if (packageSet.has(name)) return false
 
-    packageMap.set(name, true)
+    packageSet.add(name)
     return true
   })
 
@@ -52,9 +53,9 @@ async function run() {
 
   const allPackages = await Promise.all(
     p.map(async package => {
-      // TODO: add previous version to createPackageJson
-      const packageJSON = createPackageJson(package, '')
-      const bsConfig = createBsConfig(package)
+      // TODO: add previous version to lib.createPackageJson
+      const packageJSON = await lib.createPackageJson(package, '')
+      const bsConfig = await lib.createBsConfig(package)
 
       const newDir = {
         'package.json': packageJSON,
@@ -62,7 +63,8 @@ async function run() {
         [`src/${package.name}.re`]: package.source
       }
 
-      if (await diffDir(`packages/${package.name}`, newDir)) return undefined
+      if (await lib.diffDir(`packages/${package.name}`, newDir))
+        return undefined
 
       return {
         ...package,
@@ -72,11 +74,14 @@ async function run() {
     })
   )
 
-  const updatedPackages = allPackages.filter(p => p !== undefined)
+  const updatedPackages = await Promise.all(
+    allPackages.filter(p => p !== undefined)
+  )
 
   updatedPackages.forEach(async package => {
+    if (!package) return
     const oldVersion = JSON.parse(package.packageJSON).version
-    package.packageJSON = createPackageJson(package, oldVersion)
+    package.packageJSON = lib.createPackageJson(package, oldVersion)
 
     await rimraf(`packages/${package.name}`)
     await mkdir(`packages/${package.name}`)
@@ -93,6 +98,8 @@ async function run() {
 
     console.log(`${chalk.green('✓')} Wrote packages/${package.name}`)
   })
+
+  lib.end()
 }
 
 run().catch(e => console.error(chalk.red(e)))
