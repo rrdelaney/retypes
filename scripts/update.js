@@ -32,6 +32,7 @@ async function run() {
         Object.entries(flowTypedFiles).map(([name, packagePath]) => {
           if (typeof packagePath !== 'string')
             throw new Error('expected string')
+
           setName('ft')(name)
           return lib.compileFlowTypedPackage(name, packagePath)
         })
@@ -39,20 +40,19 @@ async function run() {
     })(),
 
     (async () => {
-      const definitelyTypedFiles = lib.getDefinitelyTypedFiles()
+      const definitelyTypedFiles = await lib.getDefinitelyTypedFiles()
 
       return (await Promise.all(
         Object.entries(definitelyTypedFiles).map(([name, packagePath]) => {
           if (typeof packagePath !== 'string')
             throw new Error('expected string')
+
           setName('dt')(name)
           return lib.compileDefinitelyTypedPackage(name, packagePath)
         })
       )).filter(p => !!p)
     })()
   ])
-
-  console.error(definitelyTypedPackages.length)
 
   const packageSet = new Set()
   const p = [
